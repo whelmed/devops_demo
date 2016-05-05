@@ -1,7 +1,18 @@
-from app import app
+from app import app, pick_greeting
 import unittest
 
-class FlaskAppTests(unittest.TestCase):
+class AppUnitTests(unittest.TestCase):
+
+
+    def test_different_greetings(self):
+        greeting = pick_greeting()
+
+        # assert the status code of the response
+        self.assertIn(greeting, ["Greetings", "Hello", "Hey"])
+
+
+
+class AppIntegrationTests(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
@@ -34,7 +45,7 @@ class FlaskAppTests(unittest.TestCase):
         result = self.app.get('/')
 
         # assert the response data
-        self.assertEqual(result.data, "Hello World!")
+        self.assertIn(result.data, ["{0} World!".format(x) for x in ["Greetings", "Hello", "Hey"]])
 
 if __name__ == '__main__':
     unittest.main()
