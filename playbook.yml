@@ -11,6 +11,7 @@
         - python-pip
         - python2.7-dev
         - default-jre
+        - git
     - name: app.py requirements
       pip: requirements=/var/www/requirements.txt
     - name: install jenkins key
