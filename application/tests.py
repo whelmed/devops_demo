@@ -1,20 +1,40 @@
+from app import app
 import unittest
 
-class TestStringMethods(unittest.TestCase):
+class FlaskAppTests(unittest.TestCase):
 
-  def test_upper(self):
-      self.assertEqual('foo'.upper(), 'FOO')
+    @classmethod
+    def setUpClass(cls):
+        pass
 
-  def test_isupper(self):
-      self.assertTrue('FOO'.isupper())
-      self.assertFalse('Foo'.isupper())
+    @classmethod
+    def tearDownClass(cls):
+        pass
 
-  def test_split(self):
-      s = 'hello world'
-      self.assertEqual(s.split(), ['hello', 'world'])
-      # check that s.split fails when the separator is not a string
-      with self.assertRaises(TypeError):
-          s.split(2)
+    def setUp(self):
+        # creates a test client
+        self.app = app.test_client()
+        # propagate the exceptions to the test client
+        self.app.testing = True
+
+    def tearDown(self):
+        pass
+
+    def test_home_status_code(self):
+        # sends HTTP GET request to the application
+        # on the specified path
+        result = self.app.get('/')
+
+        # assert the status code of the response
+        self.assertEqual(result.status_code, 200)
+
+    def test_home_data(self):
+        # sends HTTP GET request to the application
+        # on the specified path
+        result = self.app.get('/')
+
+        # assert the response data
+        self.assertEqual(result.data, "Hello World!")
 
 if __name__ == '__main__':
     unittest.main()
