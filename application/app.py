@@ -10,7 +10,7 @@ def pick_greeting():
 
 @app.route('/')
 def hello_world():
-    return '{greeting} World'.format(greeting=pick_greeting())
+    return '{greeting} World!'.format(greeting=pick_greeting())
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
