@@ -1,0 +1,23 @@
+- hosts: all
+  become: true
+  tasks:
+    - name: update apt cache
+      apt: update_cache=yes
+    - name: install required packages
+      apt: name={{ item }} state=present
+      with_items:
+        - apache2
+        - build-essential
+        - python-pip
+        - python2.7-dev
+        - default-jre
+    - name: app.py requirements
+      pip: requirements=/var/www/requirements.txt
+    - name: install jenkins key
+      apt_key: url=http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key state=present
+    - name: add jenkins source repo
+      lineinfile: dest="/etc/apt/sources.list" line="deb http://pkg.jenkins-ci.org/debian binary/"
+    - name: update cache
+      apt: update_cache=yes name={{ item }} state=present
+      with_items:
+        - jenkins

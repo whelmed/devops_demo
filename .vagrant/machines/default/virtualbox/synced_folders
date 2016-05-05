@@ -1,0 +1,1 @@
+{"virtualbox":{"/var/www":{"guestpath":"/var/www","hostpath":"/Users/benlambert/Documents/Cloud Academy/devops/9_summary/devops_demo_app/application","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/benlambert/Documents/Cloud Academy/devops/9_summary/devops_demo_app","disabled":false,"__vagrantfile":true}}}
