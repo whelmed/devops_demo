@@ -2,6 +2,9 @@ from random import choice
 from flask import Flask
 app = Flask(__name__)
 
+def another_function():
+    return "Hi"
+
 def pick_greeting():
     return choice(["Greetings", "Hello", "Hey"])
 
