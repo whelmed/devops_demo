@@ -2,7 +2,7 @@ from random import choice
 from flask import Flask
 app = Flask(__name__)
 
-def another_function():
+def fake_code():
     return "Hi"
 
 def pick_greeting():
